@@ -10,6 +10,13 @@ from insights.analytics import expense_trends as expense_trends_func, top_vendor
 from fraud.detect import detect_duplicates, detect_amount_anomalies
 from forecast.prophet_model import run_prophet_forecast
 from datetime import datetime
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"status": "ok"}
 
 Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Smart AI CFO API")
